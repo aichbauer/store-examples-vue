@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  // here we can define our default values for our state
   state: {
     count: 0,
     message: 'Hello World!',
@@ -23,6 +24,8 @@ export default new Vuex.Store({
     increment(state) {
       state.count += 1;
     },
+    // mutations always have the state as first argument passed to it
+    // and the payload (the values that we use to change the state) as the second
     setMessage(state, payload) {
       state.message = payload.message;
     },
@@ -36,6 +39,10 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    // in actions we get a config object as the first argument
+    // which holds the $store
+    // so we can use the commit method to commit mutations
+    // in async functions
     incrementAsync({ commit }) {
       setTimeout(() => {
         commit('increment');
